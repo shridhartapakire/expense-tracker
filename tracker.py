@@ -43,3 +43,31 @@ def view_expenses():
         result += f"{i}. {exp['category']} - ₹{exp['amount']}\n"
 
     return result
+    
+
+def total_spending():
+    data = load_data()
+
+    if not data:
+        return "No expenses found"
+
+    total = sum(exp["amount"] for exp in data)
+    return f"💰 Total Spending: ₹{total}"
+
+
+def filter_by_category(category):
+    data = load_data()
+
+    filtered = [
+        exp for exp in data
+        if exp["category"].lower() == category.lower()
+    ]
+
+    if not filtered:
+        return "No expenses found for this category"
+
+    result = f"\n📂 Expenses for '{category}':\n"
+    for i, exp in enumerate(filtered, start=1):
+        result += f"{i}. ₹{exp['amount']}\n"
+
+    return result
