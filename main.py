@@ -1,6 +1,6 @@
 # Expense Tracker Main
 
-from tracker import add_expense, view_expenses
+from tracker import add_expense, view_expenses, total_spending, filter_by_category
 
 
 def menu():
@@ -8,7 +8,8 @@ def menu():
     print("1. Add Expense")
     print("2. View Expenses")
     print("3. Total Spending")
-    print("4. Exit")
+    print("4. Filter by Category")
+    print("5. Exit")
 
 
 def main():
@@ -27,16 +28,19 @@ def main():
                 print("❌ Invalid amount")
                 continue
 
-            msg = add_expense(category, amount)
-            print(msg)
+            print(add_expense(category, amount))
 
         elif choice == '2':
             print(view_expenses())
 
         elif choice == '3':
-            print("Feature coming soon...")
+            print(total_spending())
 
         elif choice == '4':
+            category = input("Enter category to filter: ")
+            print(filter_by_category(category))
+
+        elif choice == '5':
             print("Exiting...")
             break
 
