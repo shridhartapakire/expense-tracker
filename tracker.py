@@ -71,3 +71,18 @@ def filter_by_category(category):
         result += f"{i}. ₹{exp['amount']}\n"
 
     return result
+
+
+def delete_expense(index):
+    data = load_data()
+
+    if not data:
+        return "No expenses to delete"
+
+    if index < 1 or index > len(data):
+        return "Invalid expense number"
+
+    removed = data.pop(index - 1)
+    save_data(data)
+
+    return f"🗑️ Deleted: {removed['category']} - ₹{removed['amount']}"
