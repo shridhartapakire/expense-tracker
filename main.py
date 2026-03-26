@@ -1,6 +1,12 @@
 # Expense Tracker Main
 
-from tracker import add_expense, view_expenses, total_spending, filter_by_category
+from tracker import (
+    add_expense,
+    view_expenses,
+    total_spending,
+    filter_by_category,
+    delete_expense
+)
 
 
 def menu():
@@ -9,7 +15,8 @@ def menu():
     print("2. View Expenses")
     print("3. Total Spending")
     print("4. Filter by Category")
-    print("5. Exit")
+    print("5. Delete Expense")
+    print("6. Exit")
 
 
 def main():
@@ -24,7 +31,7 @@ def main():
 
             try:
                 amount = float(input("Enter amount: "))
-            except:
+            except ValueError:
                 print("❌ Invalid amount")
                 continue
 
@@ -41,6 +48,16 @@ def main():
             print(filter_by_category(category))
 
         elif choice == '5':
+            print(view_expenses())
+            try:
+                index = int(input("Enter expense number to delete: "))
+            except ValueError:
+                print("❌ Invalid input")
+                continue
+
+            print(delete_expense(index))
+
+        elif choice == '6':
             print("Exiting...")
             break
 
